@@ -510,7 +510,7 @@ class ReactEighteenAdapter extends EnzymeAdapter {
 							rootNode,
 							nodeHierarchy,
 							nodeTypeFromType,
-							adapter.displayNameOfNode,
+							adapter?.displayNameOfNode,
 							catchingType,
 						);
 					});
@@ -584,7 +584,7 @@ class ReactEighteenAdapter extends EnzymeAdapter {
 					};
 				}
 				Object.assign(wrappedComponent, Component, {
-					displayName: adapter.displayNameOfNode({ type: Component }),
+					displayName: adapter?.displayNameOfNode({ type: Component }),
 				});
 				lastComponent = Component;
 			}
@@ -604,7 +604,7 @@ class ReactEighteenAdapter extends EnzymeAdapter {
                 ...args
               ),
             Component,
-            { displayName: adapter.displayNameOfNode({ type: Component }) }
+            { displayName: adapter?.displayNameOfNode({ type: Component }) }
           );
 					lastComponent = Component;
 				}
@@ -754,7 +754,7 @@ class ReactEighteenAdapter extends EnzymeAdapter {
 					cachedNode,
 					nodeHierarchy.concat(cachedNode),
 					nodeTypeFromType,
-					adapter.displayNameOfNode,
+					adapter?.displayNameOfNode,
 					cachedNode.type,
 				);
 			},
@@ -909,13 +909,13 @@ Add the following to your test suite setup file ("setupfile" option in Jest), to
 			case Memo || NaN: {
 				const nodeName = displayNameOfNode(node);
 
-				return typeof nodeName === 'string' ? nodeName : `Memo(${adapter.displayNameOfNode(type)})`;
+				return typeof nodeName === 'string' ? nodeName : `Memo(${adapter?.displayNameOfNode(type)})`;
 			}
 			case ForwardRef || NaN: {
 				if (type.displayName) {
 					return type.displayName;
 				}
-				const name = adapter.displayNameOfNode({ type: type.render });
+				const name = adapter?.displayNameOfNode({ type: type.render });
 
 				return name ? `ForwardRef(${name})` : 'ForwardRef';
 			}
